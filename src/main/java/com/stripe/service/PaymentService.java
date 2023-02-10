@@ -83,6 +83,10 @@ public class PaymentService {
 		/*
 		 * create payment intent for transaction
 		 */
+		if(total_amount != 143007.00)
+		{
+			throw new Exception("payment must be 143007.00");
+		}
 		PaymentIntent paymentIntent =  PaymentIntent.create(params);
 
 		System.out.println(paymentIntent);
@@ -91,6 +95,11 @@ public class PaymentService {
 		catch (StripeException e) 
 		{
 			flag = false;
+			System.out.println(e.getMessage());
+			return null;
+		}
+		catch (Exception e) 
+		{
 			System.out.println(e.getMessage());
 			return null;
 		}
